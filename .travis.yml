@@ -4,17 +4,32 @@ language: cpp
 script:
   - cd hello
   - mkdir build && cd build
-  - cmake .. -DCMAKE_CXX_COMPILER=g++-6
+  - cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
   - cmake --build .
   - ./hello
-  
+
 env:
-  - COMPILER=g++-6
+  - BUILD_TYPE=Release COMPILER=g++-4.9
+  - BUILD_TYPE=Release COMPILER=g++-5
+  - BUILD_TYPE=Release COMPILER=g++-6
+  - BUILD_TYPE=Release COMPILER=clang++-3.9
+  - BUILD_TYPE=Release COMPILER=clang++-4.0
+  - BUILD_TYPE=Debug COMPILER=g++-4.9
+  - BUILD_TYPE=Debug COMPILER=g++-5
+  - BUILD_TYPE=Debug COMPILER=g++-6
+  - BUILD_TYPE=Debug COMPILER=clang++-3.9
+  - BUILD_TYPE=Debug COMPILER=clang++-4.0
 
 addons:
   apt:
-      sources:
+    sources:
       - ubuntu-toolchain-r-test
-      packages:
+      - llvm-toolchain-trusty-3.9
+      - llvm-toolchain-trusty-4.0
+    packages:
+      - g++-4.9
+      - g++-5
       - g++-6
-      
+      - clang-3.9
+      - clang-4.0
+     
