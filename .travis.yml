@@ -4,7 +4,17 @@ language: cpp
 script:
   - cd hello
   - mkdir build && cd build
-  - cmake ..
+  - cmake .. -DCMAKE_CXX_COMPILER=g++-6
   - cmake --build .
   - ./hello
+  
+env:
+  - COMPILER=g++-6
 
+addons:
+  apt:
+      sources:
+      - ubuntu-toolchain-r-test
+      packages:
+      - g++-6
+      
