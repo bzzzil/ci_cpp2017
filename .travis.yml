@@ -2,6 +2,7 @@ dist: trusty
 language: cpp
 
 script:
+  - cd hello
   - mkdir build && cd build
   - cmake ..
   - cmake --build .
